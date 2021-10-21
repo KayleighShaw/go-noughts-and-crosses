@@ -92,4 +92,44 @@ func TestTakeTurn(t *testing.T) {
 			t.Errorf("expected %v but got %v", want, got)
 		}
 	})
+
+	t.Run("attempt to take a turn on a fully populated board", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "O", "X"},
+			{"X", "X", "O"},
+		}
+		move := [1][2]int{
+			{2, 1},
+		}
+		player := "O"
+
+		got := TakeTurn(move, player, board)
+		want := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "O", "X"},
+			{"X", "X", "O"},
+		}
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
+}
+
+func TestRowWin(t *testing.T) {
+	t.Run("row win of X on the top line", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "X", "X"},
+			{"O", "O", "X"},
+			{"O", "X", "O"},
+		}
+
+		got := rowWin(board)
+		want := "Crosses wins!"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
 }

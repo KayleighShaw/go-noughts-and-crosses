@@ -33,13 +33,36 @@ func TestTakeTurn(t *testing.T) {
 		move := [1][2]int{
 			{1, 1},
 		}
-		player := "cross"
+		player := "X"
 
 		got := TakeTurn(move, player, board)
 		want := [3][3]string{
 			{"", "", ""},
-			{"", "cross", ""},
+			{"", "X", ""},
 			{"", "", ""},
+		}
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
+
+	t.Run("empty board is populated by a nought in the bottom-center", func(t *testing.T) {
+		board := [3][3]string{
+			{"", "", ""},
+			{"", "", ""},
+			{"", "", ""},
+		}
+		move := [1][2]int{
+			{2, 1},
+		}
+		player := "O"
+
+		got := TakeTurn(move, player, board)
+		want := [3][3]string{
+			{"", "", ""},
+			{"", "", ""},
+			{"", "O", ""},
 		}
 
 		if got != want {

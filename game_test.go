@@ -69,4 +69,27 @@ func TestTakeTurn(t *testing.T) {
 			t.Errorf("expected %v but got %v", want, got)
 		}
 	})
+
+	t.Run("attempt to put a nought where there is a cross rejected", func(t *testing.T) {
+		board := [3][3]string{
+			{"", "", ""},
+			{"", "", ""},
+			{"", "X", ""},
+		}
+		move := [1][2]int{
+			{2, 1},
+		}
+		player := "O"
+
+		got := TakeTurn(move, player, board)
+		want := [3][3]string{
+			{"", "", ""},
+			{"", "", ""},
+			{"", "X", ""},
+		}
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
 }

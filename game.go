@@ -23,14 +23,15 @@ func TakeTurn(move [1][2]int, player string, board [3][3]string) [3][3]string {
 }
 
 func rowWin(board [3][3]string) string {
-	// make a for loop to check all rows
-	if board[0][0] == board[0][1] && board[0][1] == board[0][2] {
-		if board[0][0] == "X" {
-			fmt.Println("Crosses wins!")
-			return "Crosses wins!"
-		} else {
-			fmt.Println("Noughts wins!")
-			return "Noughts wins!"
+	for row := 0; row < 3; row++ {
+		if board[row][0] == board[row][1] && board[row][1] == board[row][2] {
+			if board[row][0] == "X" {
+				fmt.Println("Crosses wins!")
+				return "Crosses wins!"
+			} else {
+				fmt.Println("Noughts wins!")
+				return "Noughts wins!"
+			}
 		}
 	}
 	return "Hmmm... this doesn't work"

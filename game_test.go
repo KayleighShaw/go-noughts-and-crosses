@@ -132,4 +132,34 @@ func TestRowWin(t *testing.T) {
 			t.Errorf("expected %v but got %v", want, got)
 		}
 	})
+
+	t.Run("row win of O on the bottom line", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "O", "X"},
+			{"O", "O", "O"},
+		}
+
+		got := rowWin(board)
+		want := "Noughts wins!"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
+
+	t.Run("row win of O on the middle line", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "O", "O"},
+			{"O", "X", "O"},
+		}
+
+		got := rowWin(board)
+		want := "Noughts wins!"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
 }

@@ -162,4 +162,66 @@ func TestRowWin(t *testing.T) {
 			t.Errorf("expected %v but got %v", want, got)
 		}
 	})
+
+	t.Run("the result is a draw", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "X", "O"},
+			{"O", "X", "O"},
+		}
+
+		got := rowWin(board)
+		want := "It's a draw!"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
+
+	t.Run("still spaces to play and no wins", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "X", "O"},
+			{"O", "", "O"},
+		}
+
+		got := rowWin(board)
+		want := "Next player"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
+}
+
+func TestDraw(t *testing.T) {
+	t.Run("a draw is called when the board is full", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "X", "O"},
+			{"O", "X", "O"},
+		}
+
+		got := isItADraw(board)
+		want := "It's a draw!"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
+
+	t.Run("next player is called when empty spaces remain", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "", "O"},
+			{"O", "X", "O"},
+		}
+
+		got := isItADraw(board)
+		want := "Next player"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
 }

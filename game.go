@@ -34,5 +34,20 @@ func rowWin(board [3][3]string) string {
 			}
 		}
 	}
-	return "Hmmm... this doesn't work"
+	return isItADraw(board) // perhaps make this a tuple? Return a boolean (win) and a string?
+}
+
+func isItADraw(board [3][3]string) string {
+	gameContinue := false
+	for row := 0; row < 3; row++ {
+		if board[row][0] == "" || board[row][1] == "" || board[row][2] == "" {
+			gameContinue = true
+		}
+	}
+	if gameContinue {
+		return "Next player"
+	} else if gameContinue == false {
+		return "It's a draw!"
+	}
+	return "This isn't working"
 }

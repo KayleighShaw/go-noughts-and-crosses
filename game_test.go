@@ -194,6 +194,68 @@ func TestRowWin(t *testing.T) {
 	})
 }
 
+func TestColumnWin(t *testing.T) {
+	t.Run("win from X in the first column", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"X", "X", "O"},
+			{"X", "O", "O"},
+		}
+
+		got := columnWin(board)
+		want := "Crosses wins!"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
+
+	t.Run("win from O in the first column", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "O", "X"},
+			{"X", "O", "O"},
+		}
+
+		got := columnWin(board)
+		want := "Noughts wins!"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
+
+	t.Run("win from X in the first column", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "X", "X"},
+			{"X", "O", "X"},
+		}
+
+		got := columnWin(board)
+		want := "Crosses wins!"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
+
+	t.Run("nobody wins", func(t *testing.T) {
+		board := [3][3]string{
+			{"X", "O", "X"},
+			{"O", "X", ""},
+			{"X", "O", "X"},
+		}
+
+		got := columnWin(board)
+		want := "Next player"
+
+		if got != want {
+			t.Errorf("expected %v but got %v", want, got)
+		}
+	})
+}
+
 func TestDraw(t *testing.T) {
 	t.Run("a draw is called when the board is full", func(t *testing.T) {
 		board := [3][3]string{

@@ -37,6 +37,21 @@ func rowWin(board [3][3]string) string {
 	return isItADraw(board) // perhaps make this a tuple? Return a boolean (win) and a string?
 }
 
+func columnWin(board [3][3]string) string {
+	for column := 0; column < 3; column++ {
+		if board[0][column] == board[1][column] && board[1][column] == board[2][column] {
+			if board[0][column] == "X" {
+				fmt.Println("Crosses wins!")
+				return "Crosses wins!"
+			} else {
+				fmt.Println("Noughts wins!")
+				return "Noughts wins!"
+			}
+		}
+	}
+	return isItADraw(board)
+}
+
 func isItADraw(board [3][3]string) string {
 	gameContinue := false
 	for row := 0; row < 3; row++ {

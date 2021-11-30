@@ -26,7 +26,23 @@ func ResetBoard(board [3][3]string) [3][3]string {
 	return newBoard
 }
 
+/*
+// mutation approach
+board = NewBoard()
+TakeTurn(player, move, board)
+TakeTurn(player, move, board) // TakeTurn is a function that modifies board directly
+
+// immutable data approach <- this
+board = NewBoard()
+board = TakeTurn(player, move, board)
+board = TakeTurn(player, move, board)  
+    // TakeTurn is a function that takes old board, and returns a brand new board with the changes applied
+*/
+
 func TakeTurn(move [1][2]int, player string, board [3][3]string) [3][3]string {
+	//copy old board to new board
+	//set value
+	//return new board
 	newBoard := board
 	if newBoard[move[0][0]][move[0][1]] != "" {
 		fmt.Println("Sorry, that space isn't free. Try again")
@@ -97,5 +113,21 @@ func main() {
 	fmt.Scanln(&p2)
 	fmt.Println("Hi, " + p2 + ". You are Crosses!")
 
-	var state = Board{p1, p2, getInitialBoard()}
+	// creating an instance for initialState of the game
+	initialState := Board{p1, p2, getInitialBoard()}
+
+	// this is a pointer to the Board struct
+	pts := &initialState
+	fmt.Println(pts)
+
+	// this uses the pointer to accessing the struct fields (not using dereferencing explicitly)
+	fmt.Println(pts.P1)
+
+	// explicitly using dereferencing concept (the result will be the same)
+	fmt.Println((*pts).P1)
+
+	// can also modify the value of P1
+	// TODO use this for board state changes
+	pts.P1 = "Bob"
+	fmt.Println(pts.P1)
 }

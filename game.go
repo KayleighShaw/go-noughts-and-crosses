@@ -1,6 +1,21 @@
-package game
+package main
 
 import "fmt"
+
+type Board struct {
+	P1 string
+	P2 string
+	State [3][3]string
+}
+
+func getInitialBoard() [3][3]string {
+	board := [3][3]string{
+		{"", "", ""},
+		{"", "", ""},
+		{"", "", ""},
+	}
+	return board
+}
 
 func ResetBoard(board [3][3]string) [3][3]string {
 	newBoard := [3][3]string{
@@ -65,4 +80,22 @@ func isItADraw(board [3][3]string) string {
 		return "It's a draw!"
 	}
 	return "This isn't working"
+}
+
+func main() {
+	//TODO: randomise noughts and crosses for players
+
+	//Taking input from player 1
+	fmt.Println("Enter a name for Player 1:")
+	var p1 string
+	fmt.Scanln(&p1)
+	fmt.Println("Hi, " + p1 + ". You are Crosses!")
+
+	//Taking input for player 2
+	fmt.Println("Enter a name for Player 2:")
+	var p2 string
+	fmt.Scanln(&p2)
+	fmt.Println("Hi, " + p2 + ". You are Crosses!")
+
+	var state = Board{p1, p2, getInitialBoard()}
 }
